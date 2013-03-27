@@ -1,0 +1,6 @@
+add_lunch_combo full_u8655-eng
+add_lunch_combo full_u8655-userdebug
+add_lunch_combo full_u8655-user
+add_lunch_combo cm_u8655-eng
+add_lunch_combo cm_u8655-userdebug
+add_lunch_combo cm_u8655-user
