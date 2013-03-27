@@ -11,6 +11,6 @@ but at least the compillation is successful :D
 
 if you want to help me mail me: bmark13@vipmail.hu
 
-Note: change the line "LOCAL_CFLAGS :=" to "LOCAL_CFLAGS := -DQCOM_HARDWAR" in build/core/clear_vars.mk
+Note: change the line "LOCAL_CFLAGS :=" to "LOCAL_CFLAGS := -DQCOM_HARDWARE" in build/core/clear_vars.mk
 
 
