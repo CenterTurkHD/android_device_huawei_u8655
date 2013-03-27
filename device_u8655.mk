@@ -7,7 +7,7 @@ QCOM_HARDWARE := true
 USE_OPENGL_RENDERER := true
 
 #$(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
-PRODUCT_LOCALES := en_US en_GB de_DE hu_HU
+PRODUCT_LOCALES := en_US de_DE hu_HU
 
 
 # The gps config appropriate for this device
