@@ -1,9 +1,9 @@
 # add all configurations
 
-PRODUCT_AAPT_CONFIG := ldpi
-# hdpi xhdpi xxhdpi
-PRODUCT_AAPT_PREF_CONFIG := hdpi
-
+PRODUCT_AAPT_CONFIG := mdpi
+#mdpi ldpi hdpi xhdpi xxhdpi
+PRODUCT_AAPT_PREF_CONFIG :=
+#hdpi
 # dummy definitions to use += in later parts
 PRODUCT_PROPERTY_OVERRIDES :=
 PRODUCT_COPY_FILES :=
@@ -13,16 +13,22 @@ PRODUCT_COPY_FILES :=
 PRODUCT_PACKAGES += \
     com.android.future.usb.accessory
 
-# It does not mean that all features are supproted, but only for meeting
-# configuration requirements for some CTS
-PRODUCT_COPY_FILES += \
-    frameworks/native/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
-    frameworks/native/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
-    frameworks/native/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
-    frameworks/native/data/etc/android.hardware.sensor.barometer.xml:system/etc/permissions/android.hardware.sensor.barometer.xml \
-    frameworks/native/data/etc/android.hardware.sensor.gyroscope.xml:system/etc/permissions/android.hardware.sensor.gyroscope.xml \
-    frameworks/native/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml
 
+
+PRODUCT_COPY_FILES += \
+    frameworks/base/data/etc/handheld_core_hardware.xml:system/etc/permissions/handheld_core_hardware.xml \
+    frameworks/base/data/etc/android.hardware.camera.flash-autofocus.xml:system/etc/permissions/android.hardware.camera.flash-autofocus.xml \
+    frameworks/base/data/etc/android.hardware.location.gps.xml:system/etc/permissions/android.hardware.location.gps.xml \
+    frameworks/base/data/etc/android.hardware.wifi.xml:system/etc/permissions/android.hardware.wifi.xml \
+    frameworks/base/data/etc/android.hardware.sensor.accelerometer.xml:system/etc/permissions/android.hardware.sensor.accelerometer.xml \
+    frameworks/base/data/etc/android.hardware.sensor.compass.xml:system/etc/permissions/android.hardware.sensor.compass.xml \
+    frameworks/base/data/etc/android.hardware.sensor.proximity.xml:system/etc/permissions/android.hardware.sensor.proximity.xml \
+    frameworks/base/data/etc/android.hardware.sensor.light.xml:system/etc/permissions/android.hardware.sensor.light.xml \
+    frameworks/base/data/etc/android.hardware.touchscreen.multitouch.distinct.xml:system/etc/permissions/android.hardware.touchscreen.multitouch.distinct.xml \
+    frameworks/base/data/etc/android.hardware.usb.accessory.xml:system/etc/permissions/android.hardware.usb.accessory.xml \
+    frameworks/base/data/etc/android.software.sip.voip.xml:system/etc/permissions/android.software.sip.voip.xml \
+    frameworks/base/data/etc/android.hardware.telephony.gsm.xml:system/etc/permissions/android.hardware.telephony.gsm.xml \
+    frameworks/base/data/etc/android.hardware.telephony.cdma.xml:system/etc/permissions/android.hardware.telephony.cdma.xml
 #----------------- originally from core.mk ----------------
 
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -116,6 +122,36 @@ PRODUCT_PACKAGES += \
     screencap \
     sensorservice \
     lint
+
+PRODUCT_PACKAGES += \
+    librs_jni \
+    lights.paso \
+    overlay.default \
+    audio_policy.msm7x30 \
+    audio.primary.msm7x30 \
+    libcamera \
+    camera.msm7x30 \
+    gps.paso \
+    libOmxCore \
+    libOmxVenc \
+    libOmxVdec \
+    libreference-cdma-sms \
+    libreference-ril \
+    libloc_api-rpc
+
+PRODUCT_PACKAGES += \
+    copybit.msm7x30 \
+    gralloc.msm7x30 \
+    hwcomposer.msm7x30 \
+    libgenlock \
+    libmemalloc \
+    libQcomUI \
+    libtilerenderer \
+    liboverlay
+
+PRODUCT_PACKAGES += \
+	FM
+
 
 PRODUCT_COPY_FILES += \
     system/core/rootdir/init.usb.rc:root/init.usb.rc \
