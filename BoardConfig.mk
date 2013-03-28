@@ -13,21 +13,106 @@ TARGET_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 TARGET_GLOBAL_CPPFLAGS += -DQCOM_HARDWARE
 
 
+
+TARGET_SPECIFIC_HEADER_PATH := device/huawei/u8655/include
+
+
 # inherit from the proprietary version
 -include vendor/huawei/u8655/BoardConfigVendor.mk
-
+TARGET_HW_U8655 := true
 TARGET_NO_BOOTLOADER := true
-TARGET_BOARD_PLATFORM := msm7x30
+TARGET_BOARD_PLATFORM := msm7627a
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
-TARGET_ARCH_VARIANT := armv7-a
+TARGET_ARCH_VARIANT := armv7-a-neon
+ARCH_ARM_HAVE_TLS_REGISTER := true
+TARGET_ARCH_VARIANT_CPU := cortex-a5
+TARGET_ARCH := arm
 TARGET_BOOTLOADER_BOARD_NAME := u8655
 
-
+TARGET_EXTRA_CFLAGS += $(call cc-option,-march=armv7-a -mtune=cortex-a5)
+TARGET_GLOBAL_CFLAGS += -mfpu=neon -mfloat-abi=softfp
+TARGET_GLOBAL_CPPFLAGS += -mfpu=neon -mfloat-abi=softfp
 
 
 TARGET_BOARD_PLATFORM_GPU := qcom-adreno200
 BOARD_USES_ADRENO_200 := true
+
+
+TARGET_PROVIDES_LIBAUDIO := true
+
+# Lights
+TARGET_USE_HUAWEI_LIBLIGHTS := true
+
+# Camera
+BOARD_NEEDS_MEMORYHEAPPMEM := true
+COMMON_GLOBAL_CFLAGS += -DICS_CAMERA_BLOB
+
+# GPS
+BOARD_USES_QCOM_GPS := true
+BOARD_VENDOR_QCOM_GPS_LOC_API_HARDWARE := msm7x27a
+BOARD_VENDOR_QCOM_GPS_LOC_API_AMSS_VERSION := 50000
+
+
+# Graphics
+BOARD_EGL_CFG := device/huawei/u8655/configs/egl.cfg
+BOARD_AVOID_DRAW_TEXTURE_EXTENSION := true
+#BOARD_USE_SKIA_LCDTEXT := true
+TARGET_GRALLOC_USES_ASHMEM := true
+
+# Qcom Display
+TARGET_NO_HW_VSYNC := true
+COMMON_GLOBAL_CFLAGS += -DGENLOCK_IOC_DREADLOCK -DANCIENT_GL
+
+# Touchscreen
+BOARD_USE_LEGACY_TOUCHSCREEN := true
+
+# Video
+COMMON_GLOBAL_CFLAGS += -DQCOM_ICS_DECODERS -DQCOM_NO_SECURE_PLAYBACK
+
+# Web Rendering
+WITH_JIT := true
+ENABLE_JSC_JIT := true
+ENABLE_WEBGL := true
+TARGET_FORCE_CPU_UPLOAD := true
+HTTP := chrome
+JS_ENGINE := v8
+
+# USB
+TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
+TARGET_USE_CUSTOM_SECOND_LUN_NUM := 1
+BOARD_USE_USB_MASS_STORAGE_SWITCH := true
+BOARD_VOLD_MAX_PARTITIONS := 19
+BOARD_VOLD_EMMC_SHARES_DEV_MAJOR := true
+
+# Bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_BCM := true
+
+# FM Radio
+BOARD_HAVE_FM_RADIO := true
+BOARD_FM_DEVICE := bcm4330
+BOARD_GLOBAL_CFLAGS += -DHAVE_FM_RADIO
+
+# Wi-Fi
+#WIFI_BAND := 802_11_ABG
+BOARD_WLAN_DEVICE := bcmdhd
+WPA_SUPPLICANT_VERSION := VER_0_8_X
+BOARD_WPA_SUPPLICANT_DRIVER := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_bcmdhd
+BOARD_HOSTAPD_DRIVER := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_bcmdhd
+WIFI_DRIVER_MODULE_PATH := "/system/lib/modules/bcmdhd.ko"
+WIFI_DRIVER_MODULE_NAME := "bcmdhd"
+WIFI_DRIVER_MODULE_ARG := "firmware_path=/system/wifi/fw_4330_b2.bin nvram_path=/system/wifi/nvram_4330.txt"
+WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/bcmdhd/parameters/firmware_path"
+WIFI_DRIVER_FW_PATH_STA := "/system/wifi/fw_4330_b2.bin"
+WIFI_DRIVER_FW_PATH_AP := "/system/wifi/fw_4330_b2.bin"
+#WIFI_DRIVER_FW_PATH_P2P := "/system/wifi/fw_4330_b2.bin"
+BOARD_LEGACY_NL80211_STA_EVENTS := true
+BOARD_USE_SERNUM_FOR_MAC := true
+
+
 
 
 
@@ -70,3 +155,18 @@ TARGET_PREBUILT_KERNEL := device/huawei/u8655/kernel
 #BOARD_HAS_NO_SELECT_BUTTON := true
 # Use this flag if the board has a ext4 partition larger than 2gb
 #BOARD_HAS_LARGE_FILESYSTEM := true
+
+
+# Custom releasetools for old partition table.
+TARGET_PROVIDES_RELEASETOOLS := true
+
+# Recovery
+TARGET_RECOVERY_PIXEL_FORMAT := RGBX_8888
+TARGET_PREBUILT_RECOVERY_KERNEL := device/huawei/u8655/recovery_kernel
+BOARD_CUSTOM_GRAPHICS := ../../../device/huawei/u8655/recovery/graphics_cn.c
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := ../../device/huawei/u8655/recovery/recovery-keys.c
+TARGET_RECOVERY_INITRC := device/huawei/u8655/recovery/etc/init.rc
+BOARD_HAS_NO_SELECT_BUTTON := true
+RECOVERY_CHARGEMODE := true
+BOARD_RECOVERY_RMT_STORAGE := true
+BOARD_UMS_LUNFILE := /sys/class/android_usb/android0/f_mass_storage/lun%d/file
