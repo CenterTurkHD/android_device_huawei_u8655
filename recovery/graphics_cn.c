@@ -31,8 +31,9 @@
 #include <cutils/memory.h>
 
 #include "minui.h"
-#include "font.h"
-#include "chinese.h"
+#include "font_10x18.h"
+//#include "font.h"
+//#include "chinese.h"
 
 typedef struct {
     GGLSurface texture;
@@ -253,8 +254,29 @@ int gr_text(int x, int y, const char *s)
             break;
         s += n;
     }
-
     return x;
+	/*
+	GGLContext *gl = gr_context;
+    GRFont *font = gr_font;
+    unsigned off;
+
+    y -= font->ascent;
+
+    gl->bindTexture(gl, &font->texture);
+    gl->texEnvi(gl, GGL_TEXTURE_ENV, GGL_TEXTURE_ENV_MODE, GGL_REPLACE);
+    gl->texGeni(gl, GGL_S, GGL_TEXTURE_GEN_MODE, GGL_ONE_TO_ONE);
+    gl->texGeni(gl, GGL_T, GGL_TEXTURE_GEN_MODE, GGL_ONE_TO_ONE);
+    gl->enable(gl, GGL_TEXTURE_2D);
+
+    while((off = *s++)) {
+        off -= 32;
+        if (off < 96) {
+            gl->texCoord2i(gl, (off * font->cwidth) - x, 0 - y);
+            gl->recti(gl, x, y, x + font->cwidth, y + font->cheight);
+        }
+        x += font->cwidth;
+    }
+    return x;*/
 }
 
 void gr_fill(int x, int y, int w, int h)
@@ -403,4 +425,14 @@ int gr_fb_height(void)
 gr_pixel *gr_fb_data(void)
 {
     return (unsigned short *) gr_mem_surface.data;
+}
+
+
+unsigned int ch_utf8_length(char *s) {
+   int i = 0, j = 0;
+   while (s[i]) {
+     if ((s[i] & 0xc0) != 0x80) j++;
+     i++;
+   }
+   return j;
 }

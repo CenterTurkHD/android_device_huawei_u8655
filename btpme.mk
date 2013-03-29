@@ -45,6 +45,9 @@ PRODUCT_PACKAGES += \
     e2fsck \
     com.android.future.usb.accessory 
 
+
+
+
 PRODUCT_TAGS += dalvik.gc.type-precise
 
 PRODUCT_COPY_FILES += \
@@ -311,13 +314,8 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     librs_jni \
-    lights.paso \
     overlay.default \
-    audio_policy.msm7627a \
-    audio.primary.msm7627a \
     libcamera \
-    camera.msm7627a \
-    gps.paso \
     libOmxCore \
     libOmxVenc \
     libOmxVdec \
@@ -326,9 +324,6 @@ PRODUCT_PACKAGES += \
     libloc_api-rpc
 
 PRODUCT_PACKAGES += \
-    copybit.msm7627a \
-    gralloc.msm7627a \
-    hwcomposer.msm7627a \
     libgenlock \
     libmemalloc \
     libQcomUI \
@@ -366,16 +361,8 @@ PRODUCT_PACKAGES += \
     libvideoeditor_core \
     libvideoeditor_osal \
     libvideoeditor_videofilters \
-    libvideoeditorplayer \
+    libvideoeditorplayer
 
-PRODUCT_PACKAGES += \
-    audio.primary.default \
-    audio_policy.default \
-    local_time.default \
-    power.default
-
-PRODUCT_PACKAGES += \
-    local_time.default
 
 PRODUCT_COPY_FILES += \
     system/bluetooth/data/audio.conf:system/etc/bluetooth/audio.conf \
@@ -396,11 +383,8 @@ PRODUCT_PACKAGES += \
     libdrmframework_jni
 
 
-# Additional settings used in all AOSP builds
 PRODUCT_PROPERTY_OVERRIDES += \
-    ro.com.android.dateformat=MM-dd-yyyy \
-    ro.config.ringtone=Ring_Synth_04.ogg \
-    ro.config.notification_sound=pixiedust.ogg
+    ro.com.android.dateformat=MM-dd-yyyy 
 
 $(call inherit-product-if-exists, frameworks/base/data/keyboards/keyboards.mk)
 $(call inherit-product-if-exists, frameworks/base/data/fonts/fonts.mk)
