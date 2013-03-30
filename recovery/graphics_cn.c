@@ -214,7 +214,7 @@ static void** font_data;
 #include <sys/time.h>
 int gr_text(int x, int y, const char *s)
 {
-    GGLContext *gl = gr_context;
+    /*GGLContext *gl = gr_context;
     GRFont *gfont = gr_font;
     unsigned off, width, height, font_bitmap_width, n;
 
@@ -255,7 +255,7 @@ int gr_text(int x, int y, const char *s)
         s += n;
     }
     return x;
-	/*
+	*/
 	GGLContext *gl = gr_context;
     GRFont *font = gr_font;
     unsigned off;
@@ -276,7 +276,7 @@ int gr_text(int x, int y, const char *s)
         }
         x += font->cwidth;
     }
-    return x;*/
+    return x;
 }
 
 void gr_fill(int x, int y, int w, int h)

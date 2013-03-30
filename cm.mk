@@ -17,7 +17,7 @@ TARGET_GLOBAL_CFLAGS += -DQCOM_HARDWARE
 TARGET_GLOBAL_CPPFLAGS += -DQCOM_HARDWARE
 
 # Inherit some common CM stuff.
-$(call inherit-product, vendor/cm/config/common_mini_phone.mk)
+$(call inherit-product, device/huawei/u8655/cmp.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/huawei/u8655/device_u8655.mk)
