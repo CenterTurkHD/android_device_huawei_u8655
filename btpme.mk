@@ -1,7 +1,7 @@
 # add all configurations
 
 PRODUCT_AAPT_CONFIG := mdpi
-#mdpi ldpi hdpi xhdpi xxhdpi
+#normal mdpi ldpi hdpi xhdpi xxhdpi
 PRODUCT_AAPT_PREF_CONFIG :=
 #hdpi
 # dummy definitions to use += in later parts
